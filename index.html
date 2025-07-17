@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+  <meta charset="UTF-8">
+  <title>Personal Info Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: url('https://i.ibb.co/LXX9DsnB/modern-office-space-interior.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .form-container {
+      width: 90%;
+      max-width: 500px;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      box-sizing: border-box;
+      margin-top: 30px;
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto 20px auto;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="file"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    .btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px;
+      text-align: center;
+      display: block;
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      text-decoration: none;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    .btn:hover {
+      background-color: #45a049;
+    }
+
+    .dual-label {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .uploading-msg {
+      font-size: 14px;
+      color: #555;
+      font-weight: bold;
+      margin-bottom: 10px;
+      animation: fadein 0.3s ease-in;
+    }
+
+    @keyframes fadein {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+      .form-container {
+        width: 95%;
+        padding: 20px;
+        margin-top: 20px;
+      }
+
+      .logo {
+        width: 80px;
+        height: 80px;
+      }
+
+      h2 {
+        font-size: 20px;
+      }
+
+      label {
+        font-size: 15px;
+      }
+
+      input[type="text"],
+      input[type="date"],
+      input[type="file"],
+      input[type="tel"] {
+        font-size: 16px;
+        padding: 12px;
+      }
+
+      .btn {
+        font-size: 16px;
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    
+    <img src="https://i.ibb.co/Q3qNSFq1/Whats-App-Image-2025-07-17-at-18-16-43-e4ea31cf.jpg" alt="Logo" class="logo">
+
+    <h2>Personal Information / පෞද්ගලික තොරතුරු</h2>
+
+    <form>
+
+      <label class="dual-label">Full Name / සම්පූර්ණ නම</label>
+      <input type="text" name="fullName">
+
+      <label class="dual-label">Date of Birth / උපන්දිනය</label>
+      <input type="date" name="dob">
+
+      <label class="dual-label">Address / ලිපිනය</label>
+      <input type="text" name="address">
+
+      <label class="dual-label">Phone Number / දුරකථන අංකය</label>
+      <input type="tel" name="phone">
+
+      <label class="dual-label">Upload ID (Front Side) / හැඳුනුම්පත ඉදිරිපස උඩුගත කරන්න</label>
+      <input type="file" name="idFront" accept="image/*">
+
+      <label class="dual-label">Upload ID (Back Side) / හැඳුනුම්පත පසුපස උඩුගත කරන්න</label>
+      <input type="file" name="idBack" accept="image/*">
+
+      <label class="dual-label">Upload Selfie / ඔබගේ මුහුණු පින්තූරයක් උඩුගත කරන්න</label>
+      <input type="file" name="selfie" accept="image/*">
+
+    </form>
+
+    <a href="YOUR_NEXT_LINK_HERE" class="btn">Next / ඉදිරියට යන්න</a>
+  </div>
+
+  <script>
+    const fileInputs = document.querySelectorAll('input[type="file"]');
+
+    fileInputs.forEach(input => {
+      input.addEventListener('change', function () {
+        // Check if file selected
+        if (this.files.length > 0) {
+          // Create message
+          const msg = document.createElement('div');
+          msg.classList.add('uploading-msg');
+          msg.textContent = "Uploading...";
+          
+          // Insert message below the file input
+          this.parentNode.insertBefore(msg, this.nextSibling);
+
+          // Disable input temporarily
+          this.disabled = true;
+
+          // Simulate 3 seconds of "uploading"
+          setTimeout(() => {
+            msg.remove();
+            this.disabled = false;
+          }, 3000);
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
